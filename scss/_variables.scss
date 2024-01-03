@@ -1,0 +1,70 @@
+@use "mixins" as *;
+
+:root {
+    // Color
+    --White:        hsl(0, 0%, 100%);
+    --Black:        hsl(0, 0%, 0%);
+    --DarkGray:     hsl(0, 0%, 55%);
+    --VeryDarkGray: hsl(0, 0%, 41%);
+    // 
+    --gutter: 1rem;
+}
+
+// BreakPoints Map
+$breakpoints: (
+	'xs': 		    toEm(480),
+	'sm': 		    toEm(768),
+	'md': 		    toEm(992),
+	'lg': 		    toEm(1200),
+    'x-lg':         toEm(1440),
+	'landscape': 	(orientation: landscape),
+	'portrait': 	(orientation: portrait)
+);
+
+$xs: map-get($breakpoints, xs);
+$sm: map-get($breakpoints, sm);
+$md: map-get($breakpoints, md);
+$lg: map-get($breakpoints, lg);
+$x-lg: map-get($breakpoints, x-lg);
+
+// Heading
+
+.subHeading {
+    text-transform: uppercase;
+    font-family: 'Josefin Sans', sans-serif;;
+    font-size: toRem(36);
+}
+
+// Button
+.btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: toRem(15);
+    transition: all .5s ease-out;
+    letter-spacing: .1rem;
+
+    &--light {
+        border: 1px solid var(--Black);
+        color: var(--Black);
+        background-color: var(--White);
+        height: 2.25rem;
+        padding: 0 2.5rem;
+
+        &:hover {
+            background-color: var(--Black);
+            color: var(--White);
+        }
+    }
+}
+
+// global
+
+ul {
+    padding: 0;
+    margin: 0;
+}

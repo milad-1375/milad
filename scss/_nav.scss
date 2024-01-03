@@ -1,0 +1,128 @@
+@use "mixins" as *;
+@use "variables" as *;
+.navbar {
+
+    // navbar container
+    padding-inline: var(--gutter);
+    padding-block: toRem(61);
+
+    // fixed on the top of header
+    position: absolute;
+    top: 0;
+    inset-inline: 0;
+
+    // space between
+    display: flex;
+    justify-content: space-between;
+
+    @include respond-to($sm) {
+        padding-inline: calc(var(--gutter) * 2.375);
+    }
+    @include respond-to($lg) {
+        padding-inline: calc(var(--gutter) * 5.375);
+    }
+
+    // button toggler
+    &__toggler {
+        @include respond-to($md) {
+            display: none;
+            + .navbar__desktopLinks {
+                display: flex;
+            }
+        }
+    }
+
+    // desktop Links
+    &__desktopLinks {
+        display: none;
+    }
+
+    // off-canvas side-navbar is fixed
+    &__sideNav {
+        position: fixed;
+        inset-block: 0;
+        right: 0;
+        left: 15%;
+        z-index: 1000;
+
+        background-color: var(--Black);
+        transition: all .5s ease-out;
+        // hidden on right of screen and show with javascript
+        transform: translateX(100%);
+    }
+
+    &__sideNavHeader {
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__sideNavLogo {
+        width: min(40vw, 10rem);
+    }
+
+    &__sideNavBody {
+        padding: 1.5rem;
+        margin-top: 5rem;
+        li {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+// links style
+.nav {
+    display: flex;
+    list-style: none;
+    column-gap: .75rem;
+    row-gap: .5rem;
+    padding: 0;
+
+    &__item {
+        position: relative;
+        inline-size: fit-content;
+        block-size: fit-content;
+
+        &:hover::after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: -.2rem;
+            inset-inline: 0;
+            height: .1rem;
+            width: 50%;
+            margin-inline: auto;
+            background-color: var(--White);
+            border-radius: 3rem;
+        }
+    }
+
+    &__link {
+        text-align: none;
+        text-decoration: none;
+        color: white;
+        &:hover {
+            color: white;
+        }
+
+        // for side-nav change font-size
+        &--sideNav {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: calc(1rem + 1.5vw);
+            text-transform: uppercase;
+        }
+    }
+
+
+    // modify
+    &--vstack {
+        flex-direction: column;
+    }
+
+    // lg
+    @include respond-to($lg) {
+        &--lg-hstack {
+            flex-direction: row;
+        }
+    }
+}

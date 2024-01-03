@@ -1,0 +1,45 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+
+// container
+.container {
+    width: calc(100% - var(--gutter) * 2);
+    margin-inline: auto;
+
+    @include respond-to($sm) {
+        width: calc(100% - 2.375rem * 2);
+    }
+
+
+    @include respond-to($lg) {
+        width: calc(100% - 5.375rem * 2);
+    }
+    
+    &--full {
+        width: 100%;
+    }
+}
+
+// flexbox grid
+.row {
+    display: flex;
+    flex-flow: row wrap;
+    // normal
+    &__cols--1 {
+        > .col {
+            flex: 1 1 100%;
+        }
+    }
+    // lg
+    @include respond-to($lg) {
+        > .col--lg-8 {
+            flex: 0 0 70%;
+            max-width: 70%;
+        }
+        > .col--lg {
+            flex: 0 0 30%;
+            max-width: 70%;
+        }
+    }
+}

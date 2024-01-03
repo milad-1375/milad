@@ -1,0 +1,54 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+// display
+.d {
+    &--none {
+        display: none;
+    }
+
+    &--block {
+        display: block;
+    }
+}
+
+.d--lg {
+    @include respond-to($lg) {
+        &-block {
+            display: block;
+        }
+        &-none {
+            display: none;
+        }
+    }
+}
+
+
+// Flex
+.flex {
+    display: flex;
+
+    &--column {
+        flex-direction: column;
+    }
+    &--j-sb {
+        justify-content: space-between;
+    }
+    &--a-c {
+        align-items: center;
+    }
+    &--j-c {
+        justify-content: center;
+    }
+    &--j-end {
+        justify-content: flex-end;
+    }
+}
+
+.flex--lg {
+    @include respond-to($lg) {
+        &-j-sb {
+            justify-content: space-between;
+        }
+    }
+}

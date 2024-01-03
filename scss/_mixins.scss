@@ -1,0 +1,14 @@
+@mixin respond-to($query) {
+    @media screen and (min-width: $query) {
+        @content;
+    }
+}
+
+@function toRem($value) {
+    $remValue: ($value / 16) + rem; 
+    @return $remValue;
+}
+@function toEm($value) {
+    $emValue: ($value / 16) + em; 
+    @return $emValue;
+}

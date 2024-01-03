@@ -1,0 +1,62 @@
+@use "mixins" as *;
+@use "variables" as *;
+
+.footer {
+    p {margin: 0;}
+    padding-top: 2rem;
+    margin-top: 3rem;
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, auto);
+        row-gap: 1rem;
+
+        text-align: center;
+
+        @include respond-to($lg) {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, max-content);
+            align-items: center;
+
+            &-item--lgLogo {
+                justify-self: start;
+            }
+            &-item--lgLinks {
+                grid-column: 1/2;
+            }
+            &-item--lgCopy {
+                grid-area: 1/2;
+                justify-self: end;
+            }
+            &-item--lgSocial {
+                justify-self: end;
+            }
+        }
+    }
+    &__link {
+        &:not(:last-child) {
+            margin-right : .75rem;
+        }
+
+        &--social {
+            color: white;
+            position: relative;
+
+            &:hover {
+                color: var(--White);
+            }
+            &:hover::after {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: -.25rem;
+                inset-inline: 0;
+                height: .1rem;
+                width: 100%;
+                margin-inline: auto;
+                background-color: var(--White);
+                border-radius: 3rem;
+            }
+        }
+    }
+}
